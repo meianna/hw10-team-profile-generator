@@ -10,6 +10,139 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
 
+let managerList = [];
+let engineerList = [];
+let internList = [];
+
+function display() {
+  inquirer
+    .prompt([
+      {
+        type: "list",
+        choices: ["manager", "intern", "engineer", "exit application"],
+        message: "What would you like to display?",
+        name: "userChoice",
+      },
+    ])
+    .then(function (res) {
+      switch (res.userChoice) {
+        case "manager":
+          addManager();
+          break;
+        case "intern":
+          addIntern();
+          break;
+        case "engineer":
+          addEngineer();
+          break;
+        default:
+          generateHtml();
+          break;
+      }
+    });
+}
+
+function addManager() {
+  inquirer
+    .prompt([
+      {
+        type: "input",
+        message: "Enter name of manager",
+        name: "name",
+      },
+      {
+        type: "input",
+        message: "Enter id of manager",
+        name: "id",
+      },
+      {
+        type: "input",
+        message: "Enter email of manager",
+        name: "email",
+      },
+      {
+        type: "input",
+        message: "Enter office number of manager",
+        name: "officeNumber",
+      },
+    ])
+    .then(function (res) {
+      let myManager = new Manager(
+        res.name,
+        res.id,
+        res.email,
+        res.officeNumber
+      );
+      managerList.push(myManager);
+      console.log(managerList);
+      display();
+    });
+}
+
+function addEngineer() {
+  inquirer
+    .prompt([
+      {
+        type: "input",
+        message: "Enter name of engineer",
+        name: "name",
+      },
+      {
+        type: "input",
+        message: "Enter id of engineer",
+        name: "id",
+      },
+      {
+        type: "input",
+        message: "Enter email of engineer",
+        name: "email",
+      },
+      {
+        type: "input",
+        message: "Enter GitHub of engineer",
+        name: "github",
+      },
+    ])
+    .then(function (res) {
+      let myEngineer = new Engineer(res.name, res.id, res.email, res.github);
+      engineerList.push(myEngineer);
+      console.log(engineerList);
+      display();
+    });
+}
+
+function addIntern() {
+  inquirer
+    .prompt([
+      {
+        type: "input",
+        message: "Enter name of intern",
+        name: "name",
+      },
+      {
+        type: "input",
+        message: "Enter id of intern",
+        name: "id",
+      },
+      {
+        type: "input",
+        message: "Enter email of intern",
+        name: "email",
+      },
+      {
+        type: "input",
+        message: "Enter school of intern",
+        name: "school",
+      },
+    ])
+    .then(function (res) {
+      let myIntern = new Intern(res.name, res.id, res.email, res.school);
+      internList.push(myIntern);
+      console.log(internList);
+      display();
+    });
+}
+display();
 
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
