@@ -20,7 +20,7 @@ npm install
 
 Anyone can use this app to efficiently create individual team profiles for a variety of positions. This can help quickly organize a team roster. Simply run `node app.js`.
 
-<!-- ![](./assets/demo.gif) -->
+![demo](https://github.com/meianna/hw10-team-profile-generator/blob/master/Develop/assets/demo.gif)
 
 ## Questions?
 
